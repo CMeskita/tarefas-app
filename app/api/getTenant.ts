@@ -16,12 +16,10 @@ import {
        statusCode: number
        message: string
    }
- 
-  
-   export async function getTenant(descricao: string) {
-  
-      //debugger;
-      const url = new URL(`http://localhost:3000/tenants/tenant?descricao=${descricao}`)
+   export async function getTenant(descricao:string) {
+
+     // const url = new URL(`http://localhost:3000/tenants/tenant?descricao=${descricao}`)
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/tenants/tenant?descricao=${descricao}`;
      
 console.log(url)
     
@@ -42,21 +40,23 @@ console.log(url)
       }
       //debugger
       //const data = (await response.json()) as ItenantProps
-      const data = (await response.json()) as SessionResponse
+      const dados = (await response.json()) as SessionResponse
 
 
-console.log(data)
+console.log(dados)
 
       
 //debugger
-      /*/const tenantCompleto = {
+     /*/ const tenantCompleto = {
         id: data.id,
         descricao: data.descricao,
         tenant: data.tenant,
        
+      }/*/
+   
+      return {
+        data:dados
       }
-   /*/
-      return data
       
    
    }

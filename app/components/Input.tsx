@@ -37,6 +37,7 @@ export enum InputType {
   image = "image",
   month = "month",
   number = "number",
+  numeric = "numeric",
   password = "password",
   radio = "radio",
   range = "range",

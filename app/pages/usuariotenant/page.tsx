@@ -3,28 +3,31 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { postUsuario } from "@/app/api/postUsuario";
 import { HttpError } from "@/app/http";
 import Contents from "@/app/components/Contents/Contents";
 import { Input, InputType } from "@/app/components/Input";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
+import { Nav } from "@/app/components/Nav";
+import { usuarioLogado } from "@/app/pages/UsuarioLogado";
+import { postUsuarioTenant } from "@/app/api/postUsuarioTenant";
 //validando campos
 const UsuarioSchema=z.object({
     nome:z.string().min(3,'Informe o nome'),
     email:z.string().min(6,'Hrxadecimal precisa de no minímo 6 caracteres'),
     senhaHas:z.string().min(3,'Informe o nome'),
-    confirmsenhaHas:z.string().min(3,'Informe o nome')
+    confirmsenhaHas:z.string().min(3,'Informe o nome'),
+    tenant:z.string()
 
      })
      //tipando o objeto de validação
 type UsuarioFormData=z.infer<typeof UsuarioSchema>
 
-export default function Usuario(){
-
+export default function UsuarioTenant(){
+  const obj=usuarioLogado();
 //criando constantes de validação
 
-const usuarioUpForm = useForm<UsuarioFormData>({
+const colorUpForm = useForm<UsuarioFormData>({
     resolver: zodResolver(UsuarioSchema),
   })
 
@@ -33,7 +36,7 @@ const {
     formState: { errors },
     reset,
     register,
-  } = usuarioUpForm
+  } = colorUpForm
 
 async function CadastrarUsuario(data:UsuarioFormData )
 {   debugger;
@@ -41,12 +44,13 @@ async function CadastrarUsuario(data:UsuarioFormData )
 
   try {
     console.log(data)
-    await postUsuario({
+    await postUsuarioTenant({
     
         nome:data.nome,
         email:data.email,
         senhaHas:data.senhaHas,
-        confirmsenhaHas:data.confirmsenhaHas
+        confirmsenhaHas:data.confirmsenhaHas,
+        tenant:data.tenant
                       
     })
     reset()
@@ -69,7 +73,7 @@ async function CadastrarUsuario(data:UsuarioFormData )
     <>
     
      <Contents>
-
+     <Nav usuarioLogado={obj.nome} />
 <div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen opacity-70'>
     
     
@@ -132,6 +136,17 @@ async function CadastrarUsuario(data:UsuarioFormData )
             
             </div>
         </div>
+        <div className='flex-wrap -mx-3 hidden'>
+                  <div className='w-full'>              
+                      <h3>Tenant</h3>
+                      <Input.Field                    
+                      id='tenant'
+                      value={obj.tenant}
+                      type={InputType.number}                     
+                      />
+                  
+                  </div>
+              </div>     
         <div className="flex items-center justify-start">         
             <Button>Enviar</Button>        
         </div>      

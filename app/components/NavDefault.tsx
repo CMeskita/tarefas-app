@@ -41,10 +41,8 @@ export function NavDefault(){
         <li className="mr-2">
             <Link  
             type="button" 
-            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300" 
-          
-            href={'pages/tare'}
-            
+            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300"           
+            href={'pages/tare'}            
             >
             <div  className="h-5 w-5"><BookOpenIcon /></div>Tarefa</Link>
         </li>
@@ -52,8 +50,6 @@ export function NavDefault(){
             <Link  
             type="button" 
             className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300" 
-          
-
             href={'/'}
             >
             <div  className="h-5 w-5"><XMarkIcon /></div>Sair</Link>

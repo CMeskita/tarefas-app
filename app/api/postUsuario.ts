@@ -25,7 +25,8 @@ import {
     
   }
       debugger;
-      const url = new URL(`http://localhost:3000/usuarios`)
+      //const url = new URL(`http://localhost:3000/usuarios/compartilhado`)
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios/compartilhado`;
       const headers = new Headers({
         'Content-type': 'application/json',
       })

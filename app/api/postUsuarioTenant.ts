@@ -6,17 +6,12 @@ import {
     UnauthorizedError,
   } from '../http'
   
-  interface IinserTarefasProps{
-
-      descricao:String,
-      seg:Boolean,
-      ter:Boolean
-      qua:Boolean
-      qui:Boolean
-      sex:Boolean
-      sab:Boolean
-      dom:Boolean
-      tenant:String
+  interface IinsertUsuarioProps{
+      nome:string
+      email :string
+      senhaHas :string
+      confirmsenhaHas:string
+      tenant:string
   
    }
    interface SessionResponse{
@@ -24,15 +19,15 @@ import {
        message: string
    }
   
-   export async function postTarefa(data: IinserTarefasProps) {
+   export async function postUsuarioTenant(data: IinsertUsuarioProps) {
   try {
     
   } catch (error) {
     
   }
       debugger;
-      //const url = new URL(`http://localhost:3000/tarefas`)
-      const url = `${process.env.NEXT_PUBLIC_API_KEY}/tarefas`;
+     // const url = new URL(`http://localhost:3000/usuarios`)
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios`;
       const headers = new Headers({
         'Content-type': 'application/json',
       })

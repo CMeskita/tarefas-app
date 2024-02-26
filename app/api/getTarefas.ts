@@ -18,12 +18,10 @@ import {
       dom :boolean
       
   }[]
- 
-  
-   export async function getTarefas(tenant: Number) {
-  
-      debugger;
-      const url = new URL(`http://localhost:3000/tarefas/tenant?tenant=${tenant}`)
+   export async function getTarefas(tenant: string) {
+
+     // const url = new URL(`http://localhost:3000/tarefas/tenant?tenant=${tenant}`)
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/tarefas/tenant?tenant=${tenant}`;
      
 console.log(url)
     

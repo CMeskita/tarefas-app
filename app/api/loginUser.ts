@@ -1,5 +1,5 @@
+import { loadEnvConfig } from '@next/env'
 import {
-  BadRequestError,
   HttpError,
   InternalServerError,
   TooManyRequestsError,
@@ -9,8 +9,6 @@ import {
 interface ILoginUserProps{
     email :string
     senhaHas :string
- 
-
  }
  interface SessionResponse{
   token: string
@@ -25,7 +23,8 @@ try {
   
 }
     debugger;
-    const url = new URL(`http://localhost:3000/usuarios/login`)
+    const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios/login`;
+
     const headers = new Headers({
       'Content-type': 'application/json',
     })

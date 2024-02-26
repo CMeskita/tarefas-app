@@ -1,28 +1,114 @@
+import { postTarefa } from "@/app/api/postTarefa";
 import { Button } from "@/app/components/Button";
 import { Input, InputType } from "@/app/components/Input";
-import { NavDefault } from "@/app/components/NavDefault";
+import { HttpError } from "@/app/http";
+import { usuarioLogado } from "@/app/pages/UsuarioLogado";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-export default function FromTarefa(){
+interface Itenant{
+   id: string,
+   descricao: string,
+   tenant: Number,
+}
+
+ const tarefaSchema=z.object({
+   
+   descricao:z.string().min(3,'descrição precisa de no minímo 3 caracteres'),
+   seg:z.boolean(),
+   ter:z.boolean(),
+   qua:z.boolean(),
+   qui:z.boolean(),
+   sex:z.boolean(),
+   sab:z.boolean(),
+   dom:z.boolean(),
+   tenant:z.string()
+   
+    })
+    type TarefaFormData=z.infer<typeof tarefaSchema>
+
+export default function FormTarefa(){
+
+   const obj=usuarioLogado(); 
+
+   const tarefaUpForm = useForm<TarefaFormData>({
+      resolver: zodResolver(tarefaSchema),
+    })
+  const {
+      handleSubmit,
+      formState: { errors },
+      reset,
+      register,
+    } = tarefaUpForm
+
     const diasSemanas = ["Domingo","Segunda - Feira", "Terça - Feira", "Quarta - Feira", "Quinta - Feira", "Sexta - Feira", "Sábado"];
-    return(<>
+   
+
+    const [isChecked, setIsChecked] = useState(false);
+  
+   const handleOnChange = () => {
+    setIsChecked(!isChecked);
+  };
+async function enviarTarefas(data:TarefaFormData )
+{   
+  try {
+    debugger;
+    await postTarefa({
+    
+        descricao:data.descricao,
+        seg:data.seg, 
+        ter:data.seg, 
+        qua:data.seg, 
+        qui:data.seg, 
+        sex:data.seg, 
+        sab:data.seg, 
+        dom:data.seg, 
+        tenant:data.tenant       
+    })
+   
+      reset()
+     alert('Cadastrado com sucesso')
+  
+  }
+  catch (err) {
+    if (err instanceof HttpError) {
+      alert({ message: err.message, type: 'error' })
+   
+    } else {
+      alert({
+        message: 'Não foi possível realizar o cadastro.',
+        type: 'error',
+      })
+     
+    }
+  }
+
+}
+ 
+   
+   return(<>
         
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <div className='shadow shadow-blue-700 flex items-center justify-center  mb-4 rounded  dark:bg-gray-800'>
    
-             <form  className="w-full max-w-lg p-5">
- 
- 
+             <form onSubmit={handleSubmit(enviarTarefas)} className="w-full max-w-lg p-5">
+
                 <div className="flex flex-wrap -mx-3 mb-6 py-4">
                    <div className="w-full px-3">
                       <h3 className="mb-4 font-semibold text-black dark:text-white">Tarefa</h3>
                          <Input.Field
-                         id="nome"
+                         id="descricao"
                          type={InputType.text}
-                         placeholder=""   
-            
+                         placeholder=""  
+                         checked={isChecked}
+                          
+                         {...register('descricao')}
+                         onChange={handleOnChange}
                          />
                             
- 
+                     {errors.descricao && <span>{errors.descricao.message}</span>}
                    </div>
                 </div>
  
@@ -53,9 +139,22 @@ export default function FromTarefa(){
   
           </ul>
  
-             
+             <div hidden>
+             <Input.Field
+             className="visibility: hidden;"
+             id="nome"
+             type={InputType.text}
+                         placeholder= "" 
+                         value= {`${obj.tenant}`}
+            
+                         />
+             </div>
                 
-          <Button>Enviar</Button>  
+             <div className='flex items-center justify-center py-4'>
+                
+                <Button>Acessar</Button>
+            
+            </div>  
                  
           </form>
        </div>
