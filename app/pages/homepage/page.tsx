@@ -33,7 +33,7 @@ export default function  HomePage()  {
 
   
 const obj=usuarioLogado();
-const gettarefas=  getTarefas(obj.tenant)
+const gettarefas = getTarefas(obj.tenant)
 const [tarefas, setTarefas] = useState<Itarefas[]>([]) 
 
 

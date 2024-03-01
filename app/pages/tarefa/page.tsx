@@ -45,12 +45,18 @@ const {
    register,
    
  } = tarefaUpForm
- const [isChecked, setIsChecked] = useState(false);
+ const [isChecked, setIsChecked] = useState(  new Array(postTarefa.length).fill(false,1,5));
 
-   function handleOnChange() {
+ /*/  function handleOnChange() {
       setIsChecked(!isChecked);
       return isChecked
-   }
+   }/*/
+   const handleOnChange = (position:number) => {
+    const updatedCheckedState = isChecked.map((item, index) =>
+      index === position ? !item : item
+    );
+    setIsChecked(updatedCheckedState);
+  }
 async function enviarTarefas(data:TarefaFormData )
 {   
 try {
@@ -60,12 +66,12 @@ try {
  
      descricao:data.descricao,
      seg:data.seg, 
-     ter:data.seg, 
-     qua:data.seg, 
-     qui:data.seg, 
-     sex:data.seg, 
-     sab:data.seg, 
-     dom:data.seg, 
+     ter:data.ter, 
+     qua:data.qua, 
+     qui:data.qui, 
+     sex:data.sex, 
+     sab:data.sab, 
+     dom:data.dom, 
      tenant:data.tenant       
  })
 console.log(data)
@@ -117,12 +123,13 @@ return (
               <div className="grid grid-cols-2 gap-4 mb-4">           
               <div className="flex items-center ps-3">
                <Input.Field
+               key={1}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="seg"
                   type={InputType.checkbox}                     
                   {...register('seg')}
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[1]}
+                  onChange={() => handleOnChange(1)}
                   />
                   {errors.seg && <span>{errors.seg.message}</span>}                                 
                   
@@ -131,12 +138,13 @@ return (
 
                <div className="flex items-center ps-3">
                <Input.Field
+                  key={2}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="ter"
                   type={InputType.checkbox}
                   {...register('ter')}
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[2]}
+                  onChange={() => handleOnChange(2)}
                   />
                   {errors.ter && <span>{errors.ter.message}</span>}                                 
                   
@@ -145,12 +153,13 @@ return (
 
                <div className="flex items-center ps-3">
                <Input.Field
+               key={3}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="qua"
                   type={InputType.checkbox}
                   {...register('qua')}
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[3]}
+                  onChange={() => handleOnChange(3)}
                   />
                   {errors.qua && <span>{errors.qua.message}</span>}                                 
                   
@@ -159,12 +168,13 @@ return (
 
                <div className="flex items-center ps-3">
                <Input.Field
+               key={4}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="qui"
                   type={InputType.checkbox}   
                   {...register('qui')}
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[4]}
+                  onChange={() => handleOnChange(4)}
                   />
                   {errors.qua && <span>{errors.qua.message}</span>}                                 
                   
@@ -173,12 +183,13 @@ return (
 
                <div className="flex items-center ps-3">
                <Input.Field
+               key={5}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="sex"
                   type={InputType.checkbox}
                   {...register('sex')}
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[5]}
+                  onChange={() => handleOnChange(5)}
                   />
                   {errors.sex && <span>{errors.sex.message}</span>}                                 
                   
@@ -186,12 +197,13 @@ return (
                </div>
                <div className="flex items-center ps-3">
                <Input.Field
+               key={6}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="sab"
                   type={InputType.checkbox}
                   {...register('sab')}
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[6]}
+                  onChange={() => handleOnChange(6)}
                   />
                   {errors.sab && <span>{errors.sab.message}</span>}                                 
                   
@@ -200,12 +212,13 @@ return (
 
                <div className="flex items-center ps-3">
                <Input.Field
+               key={0}
                className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                   id="dom"
                   type={InputType.checkbox}
                   {...register('dom')}               
-                  onChange={handleOnChange}
-                  checked={isChecked}
+                  checked={isChecked[0]}
+                  onChange={() => handleOnChange(0)}
                   />
                   {errors.dom && <span>{errors.dom.message}</span>}                                 
                   
