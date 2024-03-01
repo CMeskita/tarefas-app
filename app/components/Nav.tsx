@@ -17,13 +17,13 @@ interface INavProps {
       // Destroy
   destroyCookie(null, 'token')
   }
-    
+    //<div className="h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
 export function Nav({usuarioLogado}:INavProps){
      return(
         
         <div className='w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 opacity-100'> 
         
-        <ul className='flex flex-wrap text-sm font-medium text-center text-gray-200 border-b border-gray-200 rounded-t-lg bg-blue-900 dark:border-gray-700 dark:text-gray-200 dark:bg-gray-200 justify-end'>
+        <ul className='flex flex-wrap text-sm font-medium text-center text-gray-200 border-b border-gray-200 rounded-t-lg bg-gradient-to-r from-cyan-500 to-indigo-500 dark:border-gray-700 dark:text-gray-200 dark:bg-gray-200 justify-end'>
         <li className="flex flex-1 mr-2 ">
         
             <Link  

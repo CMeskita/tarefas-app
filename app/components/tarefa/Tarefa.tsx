@@ -25,7 +25,7 @@ interface Itenant{
    sex:z.boolean(),
    sab:z.boolean(),
    dom:z.boolean(),
-   tenant:z.number()
+   tenant:z.string()
    
     })
     type TarefaFormData=z.infer<typeof tarefaSchema>

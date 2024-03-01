@@ -1,16 +1,10 @@
 'use client'
 import { getTarefas } from "@/app/api/getTarefas";
-import FormAside from "@/app/components/Contents/FormAside";
 import { FormaRedonda } from "@/app/components/FormaRedonda";
 import { Nav } from "@/app/components/Nav";
 import { usuarioLogado } from "@/app/pages/UsuarioLogado";
 import { useEffect, useState } from "react";
-import {
-
-  PencilIcon 
-  
-} from '@heroicons/react/24/outline'
-import Tarefa from "@/app/components/tarefa/Tarefa";
+import {PencilIcon} from '@heroicons/react/24/outline'
 
 interface Itarefas{
   id: string
@@ -29,23 +23,19 @@ export default function  HomePage()  {
   const data=new Date()
   const dataatual=data.toLocaleDateString('pt-br', {day:"numeric", weekday:"long", year:"numeric", month:"short"});
   const days = ["Dom","Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
-  const semana = days[data.getDay()];
-
-  
-const obj=usuarioLogado();
-const gettarefas = getTarefas(obj.tenant)
-const [tarefas, setTarefas] = useState<Itarefas[]>([]) 
+  const semana = days[data.getDay()];  
+  const obj=usuarioLogado();
+  const gettarefas = getTarefas(obj.tenant)
+  const [tarefas, setTarefas] = useState<Itarefas[]>([]) 
 
 
-useEffect(() => {
-  gettarefas.then(resposta=>setTarefas(resposta.data)).catch(error=>console.log(error)).finally(()=>{})
-}, [gettarefas])
+    useEffect(() => {
+      gettarefas.then(resposta=>setTarefas(resposta.data)).catch(error=>console.log(error)).finally(()=>{})
+    }, [gettarefas])
 
 
-    return (
- 
-    <>
-     
+  return (
+    <>     
     <div className="p-4 sm:ml-64">
     <Nav usuarioLogado={obj.nome} />
 
