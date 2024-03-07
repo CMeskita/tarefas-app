@@ -1,13 +1,15 @@
+
 import {
     
   InternalServerError,
   NotFoundError,
   TooManyRequestsError,
   } from '../http'
+
   
   interface ItarefasProps{
     
-      id: string
+      _id: string
       descricao :string
       seg :boolean
       ter :boolean
@@ -16,13 +18,15 @@ import {
       sex :boolean
       sab :boolean
       dom :boolean
+      tenant:string
       
   }[]
+  
    export async function getTarefas(tenant: string) {
 
      // const url = new URL(`http://localhost:3000/tarefas/tenant?tenant=${tenant}`)
       const url = `${process.env.NEXT_PUBLIC_API_KEY}/tarefas/tenant?tenant=${tenant}`;
-     
+    // debugger;
 console.log(url)
     
       const response = await fetch(url)
@@ -43,7 +47,7 @@ console.log(url)
       const data = (await response.json()) as ItarefasProps[]
 
       const tarefas = data.map((tarefa) => ({
-        id: tarefa.id,
+        id: tarefa._id,
         descricao: tarefa.descricao,
         seg: tarefa.seg,
         ter: tarefa.ter,
@@ -52,6 +56,7 @@ console.log(url)
         sex: tarefa.sex,
         sab: tarefa.sab,
         dom: tarefa.dom,
+        tenant:tarefa.tenant
       }))
    
       return {

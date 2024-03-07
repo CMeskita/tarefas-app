@@ -87,7 +87,11 @@ async function acessLogin(data:LoginFormData )
        
       
         <form onSubmit={handleSubmit(acessLogin)} className='w-full max-w-lg p-5'>
-        <div className='flex items-center justify-center w-full rounded-lg bg-blue-700 text-white  font-bold py-2'>Acesso</div>
+                <div className="text-3xl text-center font-extrabold ...">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-indigo-500">
+            Acessar
+          </span>
+        </div>
                 <div className='flex flex-wrap -mx-3 mb-6 py-2'>
                     <div className='w-full px-3'>
                    
@@ -117,7 +121,7 @@ async function acessLogin(data:LoginFormData )
                 </div>
                 <div className='flex items-center justify-center py-4'>
                 
-                    <Button>Acessar</Button>
+                    <Button>Enviar</Button>
                 
                 </div>        
                 <a href="/Acess/forgout" className="text-sm text-blue-700 hover:underline ml-auto dark:text-blue-500">Esqueceu a Senha?</a>

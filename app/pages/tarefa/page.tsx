@@ -47,10 +47,6 @@ const {
  } = tarefaUpForm
  const [isChecked, setIsChecked] = useState(  new Array(postTarefa.length).fill(false,1,5));
 
- /*/  function handleOnChange() {
-      setIsChecked(!isChecked);
-      return isChecked
-   }/*/
    const handleOnChange = (position:number) => {
     const updatedCheckedState = isChecked.map((item, index) =>
       index === position ? !item : item
@@ -97,10 +93,10 @@ return (
 <>
 <Nav usuarioLogado={obj.nome} />
  
-   <div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen opacity-70'>
+   <div className='flex items-center justify-center p-4 sm:ml-0 w-screen h-screen bg-black '>
   
   
-    <div className='shadow shadow-blue-700 flex items-center justify-center max-w-96  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
+    <div className='shadow shadow-blue-900 flex items-center justify-center max-w-96  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
      
      
     

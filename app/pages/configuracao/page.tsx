@@ -20,7 +20,7 @@ const tarefas = ["Tarefa 01", "Tarefa 02", "Tarefa 03"];
     return (
        <>
 
- <FormAside />
+ <FormAside tenant={0} />
 
 <div className="p-4 sm:ml-64">
 

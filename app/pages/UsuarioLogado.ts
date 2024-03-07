@@ -18,3 +18,5 @@ export function usuarioLogado(){
   
   return obj;
 }
+
+  

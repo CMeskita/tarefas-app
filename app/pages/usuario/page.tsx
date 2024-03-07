@@ -73,13 +73,13 @@ async function CadastrarUsuario(data:UsuarioFormData )
 <div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen opacity-70'>
     
     
-<div className='shadow shadow-blue-700 flex items-center justify-center  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
+<div className='shadow shadow-blue-900 flex items-center justify-center  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
 
     
          
 <form onSubmit={handleSubmit(CadastrarUsuario)}  className="w-full max-w-lg p-5">
 
-<div className='flex items-center justify-center w-full rounded-lg bg-blue-700 text-white  font-bold py-2'>Cadastrar Usuário</div>
+<div className='flex items-center justify-center w-full rounded-lg bg-blue-900 text-white  font-bold py-2'>Cadastrar Usuário</div>
         <div className="flex flex-wrap -mx-3 mb-6 py-4">
             <div className="w-full px-3">
             <label>Nome</label>
