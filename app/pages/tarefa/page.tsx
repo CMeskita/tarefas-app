@@ -45,7 +45,7 @@ const {
    register,
    
  } = tarefaUpForm
- const [isChecked, setIsChecked] = useState(  new Array(postTarefa.length).fill(false,1,5));
+ const [isChecked, setIsChecked] = useState(new Array(postTarefa.length).fill(false,1,5));
 
    const handleOnChange = (position:number) => {
     const updatedCheckedState = isChecked.map((item, index) =>

@@ -58,7 +58,7 @@ export default function  HomePage(){
                    <label className="text-2xl text-gray-400 dark:text-gray-500">
                     {tarefas.descricao} </label>
                       
-                   <Link href={"/page/editartarefa"}>
+                   <Link href={"/pages/editartarefa"}>
                     <PencilIcon className="w-5 h-5 justify-end text-blue-900" 
                     type="button" 
                     id={tarefas.id}                  
@@ -79,7 +79,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Seg':{
                     return (
                   
-                      <div className="font-semibold">
+                      <div key={'seg'} className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.seg===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            
@@ -89,7 +89,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Ter':{
                     return (
                   
-                      <div className="font-semibold">
+                      <div key={'ter'} className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.ter===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            
@@ -99,7 +99,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Qua':{
                     return (
                   
-                      <div  className="font-semibold">
+                      <div key={'qua'} className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.qua===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            
@@ -109,7 +109,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Qui':{
                     return (
                   
-                      <div  className="font-semibold">
+                      <div key={'qui'}  className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.qui===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            
@@ -119,7 +119,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Sex':{
                     return (
                   
-                      <div  className="font-semibold">
+                      <div key={'sex'} className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.sex===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            
@@ -129,7 +129,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Sab':{
                     return (
                   
-                      <div className="font-semibold">
+                      <div key={'sab'} className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.sab===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            
@@ -139,7 +139,7 @@ export default function  HomePage(){
                   case day.valueOf()==='Dom':{
                     return (
                   
-                      <div className="font-semibold">
+                      <div key={'dom'} className="font-semibold">
                             {day}
                           <FormaRedonda className={tarefas.dom===true?'bg-[#19155c]':'bg-[#807e7c]'} ></FormaRedonda>
                            

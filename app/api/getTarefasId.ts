@@ -36,7 +36,7 @@ debugger;
           throw new NotFoundError('Tarefa não encontrado.')
       
       }
-      const data = await response.json() //as ItarefasProps
+      const data = await response.json() as ItarefasProps
 
       const tarefas = {
         id: data.id,
