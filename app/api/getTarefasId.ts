@@ -25,7 +25,7 @@ import {
    export async function getTarefasId(id: string) {
     debugger;
     
-      const url = `${process.env.NEXT_PUBLIC_API_KEY_}/tarefas/${id}`;
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/tarefas/${id}`;
       debugger;
       console.log(url)
     
