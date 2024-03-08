@@ -6,7 +6,7 @@ import {
     BookOpenIcon
     
   } from '@heroicons/react/24/outline'
-
+import {MdDashboard,MdArrowDownward,MdSupervisorAccount,MdExitToApp} from 'react-icons/md'
 interface INavProps {
    
     usuarioLogado:string
@@ -38,7 +38,7 @@ export function Nav({usuarioLogado}:INavProps){
             type="button" 
             className="inline-block p-4  hover:text-blue-900 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300" 
             href={'/pages/usuariotenant'} >
-            <div  className="h-5 w-5"><UserCircleIcon /></div>{usuarioLogado}</Link>
+            <div  className="h-5 w-5"><MdSupervisorAccount /></div>{usuarioLogado}</Link>
         </li>
         <li className="mr-2">
             <Link  
@@ -46,7 +46,7 @@ export function Nav({usuarioLogado}:INavProps){
             className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300"           
             href={'/pages/tarefa'}            
             >
-            <div  className="h-5 w-5"><BookOpenIcon />
+            <div  className="h-5 w-5"><MdDashboard />
             </div>Tarefa
             </Link>
         </li>
@@ -57,7 +57,7 @@ export function Nav({usuarioLogado}:INavProps){
             onClick={handleClick}
             href={'/'}
             >
-            <div  className="h-5 w-5"><XMarkIcon /></div>Sair</Link>
+            <div  className="h-5 w-5"><MdExitToApp /></div>Sair</Link>
         </li>
 
         </ul>
