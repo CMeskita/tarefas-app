@@ -34,4 +34,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# tarefas-app
+# Tarefas-app
+## App de tarefas simples, com Saas, Authenticação JWT , banco MoongoDb, Api hospedada na Vercel
+![image](https://github.com/CMeskita/tarefas-app/assets/30234377/d39b4891-cf18-4d13-a84f-1b67be982a8a)
+
