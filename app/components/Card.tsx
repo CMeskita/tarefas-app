@@ -7,16 +7,14 @@ import {
   } from "@material-tailwind/react";
 interface ICardProps{
     children:any
+    className:string
 }
-export default function Card({children}:ICardProps){
-    return(
-<div className="p-4 border-2 border-blue-500  rounded-lg dark:border-gray-700 m-2">
-    <div className="flex items-center justify-center h-24 rounded bg-gray-500 dark:bg-gray-800">
-    </div>
-       <div className="grid grid-cols-7 gap-6 sm:gap-12 place-items-center">
-       </div>
+export default function Card({children,className}:ICardProps){
+    return(<>
+        <div className={`shadow shadow-gray-700 flex items-center justify-center h-50 rounded  dark:bg-gray-800 ${className}  `}>
+   {children}
 
 </div>
-    )
+    </>)
  
 }

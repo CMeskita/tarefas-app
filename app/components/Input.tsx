@@ -11,7 +11,7 @@ function Input ({type, ...props}:InputFieldProps,ref) {
 
   return (
   
-    <input className="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"
+    <input className="shadow appearance-none block w-full text-blue-700 border border-blue-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"
     type={type}
     ref={ref}
     {...props}

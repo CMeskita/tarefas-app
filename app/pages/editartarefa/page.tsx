@@ -4,8 +4,11 @@ import { Button } from "@/app/components/Button";
 import { Input, InputType } from "@/app/components/Input";
 import { Nav } from "@/app/components/Nav";
 import { detalhesTarefa } from "@/app/pages/detalhesTarefa";
-import { destroyCookie } from "nookies";
+import { destroyCookie, setCookie } from "nookies";
 import { SetStateAction, useEffect, useState } from "react";
+import mypassword from "../../../public/notebookblue.svg"
+import Image, { StaticImageData } from 'next/image'
+
 
 interface IProducts {
        id:string
@@ -22,7 +25,7 @@ interface IProducts {
 function handleClick() {
      
   // Destroy
-destroyCookie(null, '_id')
+  setCookie(null, '_id','')
 }
  
 export default function EditarTarefa() {
@@ -41,23 +44,33 @@ export default function EditarTarefa() {
       <>
       <Nav usuarioLogado={'nome'} />
        
-         <div className='flex items-center justify-center p-4 sm:ml-0 w-screen h-screen'>
-        
-        
-          <div className='shadow shadow-blue-900 flex items-center justify-center max-w-96  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
-           
-           
-          
-            <form className='w-full max-w-lg p-5'>
-            
-                    <div className='flex flex-wrap -mx-3 mb-6 py-2'>
+         <div className='flex items-center justify-center p-4 sm:ml-0 w-screen h-screen'>                
+         <div className="grid sm:grid-cols-2 xs:grid-cols-1">
+         <span>
+         <Image src={mypassword} alt={""} width={200} height={100}></Image>
+         <p className="text-2xl text-blue-900  font-bold ">Melhore suas Tarefas!!</p>
+         </span>
+            <form className='w-full max-w-lg p-4'>
+                  <div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>
+       
+                        <span className="text-center text-blue-900 text-2xl font-bold  ">
+                                Alterar Tarefa!
+                        </span>
+                     </div>
+                     <div className='flex flex-wrap justify-center '>
+       
+                        <span className="text-center text-gray-700">
+                        {`${tarefas?.descricao}`}
+                        </span>
+                     </div>
+                    <div className='flex flex-wrap -mx-3 mb-4 py-2'>
                         <div className='w-full px-3'>
                        
-                            <span className="align-top"> Alterar Tarefa</span>
+                        
                             <Input.Field
                             id="descricao"
                             type={InputType.text}
-                            placeholder={`${tarefas?.descricao}`}
+                            placeholder=""
                            
                             />
                            
@@ -68,7 +81,7 @@ export default function EditarTarefa() {
                     <div className="flex items-center ps-3">
                      <Input.Field
                         key={1}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4"
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.seg}
@@ -79,7 +92,7 @@ export default function EditarTarefa() {
                     <div className="flex items-center ps-3">
                      <Input.Field
                         key={2}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4"
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.ter}
@@ -87,10 +100,10 @@ export default function EditarTarefa() {
                                                                            
                      <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">terça</label>
                     </div>
-                    <div className="flex items-center ps-3">
+                    <div className="flex items-center ps-2">
                      <Input.Field
                         key={3}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4"
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.qua}
@@ -101,7 +114,7 @@ export default function EditarTarefa() {
                     <div className="flex items-center ps-3">
                      <Input.Field
                         key={4}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4"
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.qui}
@@ -109,10 +122,10 @@ export default function EditarTarefa() {
                                                                            
                      <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quinta</label>
                     </div>
-                    <div className="flex items-center ps-3">
+                    <div className="flex items-center ps-2">
                      <Input.Field
                         key={5}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4"
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.sex}
@@ -123,7 +136,7 @@ export default function EditarTarefa() {
                     <div className="flex items-center ps-3">
                      <Input.Field
                         key={6}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4 "
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.sab}
@@ -131,10 +144,10 @@ export default function EditarTarefa() {
                                                                            
                      <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">sábado</label>
                     </div>
-                    <div className="flex items-center ps-3">
+                    <div className="flex items-center ps-2">
                      <Input.Field
                         key={0}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                     className="w-4 h-4 "
                         id="ter"
                         type={InputType.checkbox}
                        checked={tarefas?.dom}
@@ -149,7 +162,7 @@ export default function EditarTarefa() {
                     <div className="flex items-center ps-3">
                      <Input.Field
                         key={''}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                        className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
                         id="ter"
                         type={InputType.checkbox}
                        checked={true}
@@ -157,6 +170,17 @@ export default function EditarTarefa() {
                                                                            
                      <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ativo</label>
                     </div>           
+                    <div className="flex items-center ps-3">
+                     <Input.Field
+                        key={''}
+                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                        id="ter"
+                        type={InputType.checkbox}
+                       checked={false}
+                        />
+                                                                           
+                     <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Compartilhada</label>
+                    </div>  
                     </div>        
                   
             </form>

@@ -56,7 +56,9 @@ console.log(url)
         sex: tarefa.sex,
         sab: tarefa.sab,
         dom: tarefa.dom,
-        tenant:tarefa.tenant
+        tenant:tarefa.tenant,
+        // ativo: tarefa.dom,
+        //shaed:tarefa.tenant
       }))
    
       return {

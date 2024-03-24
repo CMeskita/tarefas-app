@@ -11,6 +11,10 @@ import Link from "next/link";
 import { Nav } from "@/app/components/Nav";
 import { usuarioLogado } from "@/app/pages/UsuarioLogado";
 import { postUsuarioTenant } from "@/app/api/postUsuarioTenant";
+import mypassword from "../../../public/notebookblue.svg"
+import Image, { StaticImageData } from 'next/image'
+import { destroyCookie, setCookie } from "nookies";
+
 //validando campos
 const UsuarioSchema=z.object({
     nome:z.string().min(3,'Informe o nome'),
@@ -68,68 +72,80 @@ async function CadastrarUsuario(data:UsuarioFormData )
     }
   }
 }
+function handleClick() {
+     
+  // Destroy
+  setCookie(null, 'token','')
+  setCookie(null, '_id','')
+
+}
 
     return (
     <>
     
      <Contents>
      <Nav usuarioLogado={obj.nome} />
-<div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen opacity-70'>
-    
-    
-<div className='shadow shadow-blue-700 flex items-center justify-center  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
-
-    
+<div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen'>
+<div className="grid sm:grid-cols-2 xs:grid-cols-1">
+         <span>
+   <Image src={mypassword} alt={""} width={200} height={100} className="hover:-translate-x-1"></Image>
+   <p className="text-2xl text-blue-900  font-bold ">Compatilhe as Tarefas!!</p>
+   </span>
          
 <form onSubmit={handleSubmit(CadastrarUsuario)}  className="w-full max-w-lg p-5">
 
-<div className='flex items-center justify-center w-full rounded-lg bg-blue-700 text-white  font-bold py-2'>Cadastrar Usuário</div>
-        <div className="flex flex-wrap -mx-3 mb-6 py-4">
+<div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>
+       
+       <span className="text-center text-blue-900 text-2xl font-bold ">
+                       Cadastro Usuário
+                       </span>
+     </div>
+        <div className="flex flex-wrap -mx-3 mb-4">
             <div className="w-full px-3">
-            <label>Nome</label>
+           
                 <Input.Field
                 id="nome"
                 type={InputType.text}
-                placeholder=""
+                placeholder="Nome"
                 {...register('nome')}
                 />
                    {errors.nome && <span>{errors.nome.message}</span>}
 
             </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap -mx-3 mb-4">
             <div className="w-full px-3">
-                <label>Email</label>
+             
                 <Input.Field
                 id="email"
                 type={InputType.text}
-                placeholder=""
+                placeholder="Email"
                 {...register('email')}
                 />
                  {errors.email && <span>{errors.email.message}</span>}
             
             </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap -mx-3 mb-4">
             <div className="w-full px-3">
-                <label>Senha</label>
+            
                 <Input.Field
                 id="senhaHas"
                 type={InputType.password}
-                placeholder=""
+                placeholder="Senha"
                 {...register('senhaHas')}
                 />
                  {errors.senhaHas && <span>{errors.senhaHas.message}</span>}
             
             </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap -mx-3 mb-4">
             <div className="w-full px-3">
-                <label>Confirmar Senha</label>
+              
                 <Input.Field
                 id="confirmsenhaHas"
                 type={InputType.password}
-                placeholder=""
+                placeholder="Confirma Senha"
                 {...register('confirmsenhaHas')}
                 />
                  {errors.confirmsenhaHas && <span>{errors.confirmsenhaHas.message}</span>}
@@ -138,9 +154,10 @@ async function CadastrarUsuario(data:UsuarioFormData )
         </div>
         <div className='flex-wrap -mx-3 hidden'>
                   <div className='w-full'>              
-                      <h3>Tenant</h3>
+                 
                       <Input.Field                    
                       id='tenant'
+                      placeholder="tenant"
                       value={obj.tenant}
                       type={InputType.number}                     
                       />
@@ -149,13 +166,25 @@ async function CadastrarUsuario(data:UsuarioFormData )
               </div>     
         <div className="flex items-center justify-start">         
             <Button>Enviar</Button>        
+            <div className="flex items-center ps-3">
+                     <Input.Field
+                        key={''}
+                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
+                        id="ter"
+                        type={InputType.checkbox}
+                       checked={false}
+                        />
+                                                                           
+                     <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrador</label>
+                    </div>   
         </div>      
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 py-4">
-                                    Deseja Fazer Login?
-                 <Link className="text-blue-700 hover:underline dark:text-blue-500" 
+                                    Cadastro compartilhado !
+                 <Link className="text-blue-900 hover:underline dark:text-blue-500" 
+                  onClick={handleClick}
                   href={'/pages/login'}
                  >
-                Logar</Link>
+                Logar?</Link>
                         </div>
 </form>
     </div>

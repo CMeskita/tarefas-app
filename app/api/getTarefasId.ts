@@ -49,6 +49,8 @@ debugger;
         sab: data.sab,
         dom: data.dom,
         tenant:data.tenant
+         // ativo: tarefa.dom,
+        //shaed:tarefa.tenant
       }
    
       return tarefas

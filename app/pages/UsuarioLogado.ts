@@ -8,7 +8,7 @@ interface UserData {
   }
   
 export function usuarioLogado(){
-    //const [user, setUser] = useState<UserData>()
+
     const { 'token': token } = parseCookies()
    
   

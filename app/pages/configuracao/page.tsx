@@ -40,7 +40,7 @@ const tarefas = ["Tarefa 01", "Tarefa 02", "Tarefa 03"];
                   return(
                      <>
                      
-    <div className="p-4 border-2 border-gary-200 hover:translate-x-2 rounded-lg dark:border-gray-700 m-2">
+    <div className="border-2 border-gary-200 hover:translate-x-2 rounded-lg dark:border-gray-700 m-2">
     <Tag className={"bg-gradient-to-r from-cyan-500 to-indigo-500 dark:border-gray-700 dark:text-gray-200 dark:bg-gray-200"}  /> 
               <div className="grid grid-cols-1 gap-4 mb-4">
              
@@ -54,7 +54,7 @@ const tarefas = ["Tarefa 01", "Tarefa 02", "Tarefa 03"];
           
                 </div>
 
-             <div className="grid grid-cols-7 gap-6 sm:gap-12 place-items-center">
+             <div className="grid grid-cols-7 gap-6 sm:gap-12 place-items-center p-4">
              
              {
                

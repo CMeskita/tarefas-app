@@ -11,7 +11,8 @@ import { useRouter } from 'next/navigation'
 import { setCookie } from "nookies";
 import { HttpError } from "@/app/http";
 import Link from "next/link";
-
+import mypassword from "../../../public/notebookblue.svg"
+import Image, { StaticImageData } from 'next/image'
 
 //validando campos
 
@@ -53,7 +54,7 @@ async function acessLogin(data:LoginFormData )
       })
      /// setUser(jdecode<UserData>(token))
       reset(),
-      router.push('pages/homepage')
+      router.push('/pages/homepage')
     }else{
       alert('Login Invalido')
       reset()
@@ -77,29 +78,31 @@ async function acessLogin(data:LoginFormData )
 }
     return (
 
-     <Contents>
+    
    
-     <div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen opacity-70'>
-    
-    
-      <div className='shadow shadow-blue-700 flex items-center justify-center max-w-96  mb-4 rounded bg-blue-50 dark:bg-gray-800'>
-       
-       
-      
+     <div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen '>
+     
+     <div className="grid sm:grid-cols-2 xs:grid-cols-1">
+         <span>
+   <Image src={mypassword} alt={""} width={200} height={100} className="hover:-translate-x-1"></Image>
+   <p className="text-2xl text-blue-900  font-bold ">Ola!!</p>
+   </span>
+     
         <form onSubmit={handleSubmit(acessLogin)} className='w-full max-w-lg p-5'>
-                <div className="text-3xl text-center font-extrabold ...">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-indigo-500">
-            Acessar
-          </span>
-        </div>
-                <div className='flex flex-wrap -mx-3 mb-6 py-2'>
+        <div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>
+       
+       <span className="text-center text-blue-900 text-2xl font-bold  ">
+                       Acessar
+                       </span>
+     </div>
+                <div className='flex flex-wrap -mx-3 mb-6'>
                     <div className='w-full px-3'>
                    
-                        <h3>Email</h3>
+                        
                         <Input.Field
                         id="email"
                         type={InputType.email}
-                        placeholder=""
+                        placeholder="Email"
                         {...register('email')}
                         />
                         {errors.email && <span>{errors.email.message}</span>}
@@ -108,11 +111,11 @@ async function acessLogin(data:LoginFormData )
                 </div>
                 <div className='flex flex-wrap -mx-3 mb-6'>
                     <div className='w-full px-3'>
-                        <h3>Senha</h3>
+                       
                         <Input.Field
                         id='password'
                         type={InputType.password}
-                        placeholder="******"
+                        placeholder="Senha******"
                         {...register('password')}
                         />
                         {errors.password && <span>{errors.password.message}</span>}
@@ -124,21 +127,22 @@ async function acessLogin(data:LoginFormData )
                     <Button>Enviar</Button>
                 
                 </div>        
-                <a href="/Acess/forgout" className="text-sm text-blue-700 hover:underline ml-auto dark:text-blue-500">Esqueceu a Senha?</a>
+                <a href="/Acess/forgout" className="text-sm text-blue-900 hover:underline ml-auto dark:text-blue-900">Esqueceu a Senha?</a>
                 <div className="text-sm font-medium text-gray-500 dark:text-gray-300 py-4">
                                     Deseja se Cadastrar?
-                 <Link className="text-blue-700 hover:underline dark:text-blue-500" 
+                 <Link className="text-blue-500 hover:underline dark:text-blue-900" 
                   href={'/pages/usuario'}
                  >
                 cadastrar</Link>
                         </div>
         </form>
-      
-     
+    
+ 
       </div>
+      
       </div>     
-   
-    </Contents>
+     
+ 
    
     )
     

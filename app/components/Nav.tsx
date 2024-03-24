@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { parseCookies, setCookie, destroyCookie } from 'nookies'
+
 import {
     XMarkIcon,
     UserCircleIcon,
     BookOpenIcon
     
   } from '@heroicons/react/24/outline'
-import {MdDashboard,MdArrowDownward,MdSupervisorAccount,MdExitToApp} from 'react-icons/md'
+import {MdDashboard,MdHome,MdSupervisorAccount,MdExitToApp} from 'react-icons/md'
+import { setCookie } from "nookies";
 interface INavProps {
    
     usuarioLogado:string
@@ -15,8 +16,14 @@ interface INavProps {
   function handleClick() {
      
       // Destroy
-  destroyCookie(null, 'token')
+      setCookie(null,'token','')
+      setCookie(null,'_id','')
   }
+  function handleClickId() {
+     
+    // Destroy
+    setCookie(null,'_id','')
+}
     //<div className="h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
 export function Nav({usuarioLogado}:INavProps){
      return(
@@ -28,22 +35,25 @@ export function Nav({usuarioLogado}:INavProps){
         
             <Link  
             type="button" 
-            className="inline-block p-4 hover:text-blue-900 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500 " 
+            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:translate-x-1 dark:bg-gray-200 dark:hover:bg-gray-200  dark:hover:text-gray-200"    
+            onClick={handleClickId}
             href={'/pages/homepage'}>
-            Logo<span className="italic">MSK</span> </Link>
+            <div  className="h-5 w-5">
+                <MdHome />
+            Logo<span className="italic">MSK</span></div> </Link>
         </li>
         
         <li className=" mr-2">       
             <Link 
             type="button" 
-            className="inline-block p-4  hover:text-blue-900 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300" 
+            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:translate-x-1 dark:bg-gray-200 dark:hover:bg-gray-200  dark:hover:text-gray-200"    
             href={'/pages/usuariotenant'} >
             <div  className="h-5 w-5"><MdSupervisorAccount /></div>{usuarioLogado}</Link>
         </li>
         <li className="mr-2">
             <Link  
             type="button" 
-            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300"           
+            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:translate-x-1 dark:bg-gray-200 dark:hover:bg-gray-200  dark:hover:text-gray-200"           
             href={'/pages/tarefa'}            
             >
             <div  className="h-5 w-5"><MdDashboard />
@@ -53,7 +63,7 @@ export function Nav({usuarioLogado}:INavProps){
         <li className="mr-2">
             <Link  
             type="button" 
-            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700  dark:hover:text-gray-300" 
+            className="inline-block p-4  hover:text-blue-900 rounded-lg  hover:translate-x-1 dark:bg-gray-200 dark:hover:bg-gray-200  dark:hover:text-gray-200"    
             onClick={handleClick}
             href={'/'}
             >

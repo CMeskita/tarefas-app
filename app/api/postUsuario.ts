@@ -11,6 +11,7 @@ import {
       email :string
       senhaHas :string
       confirmsenhaHas:string
+      admin:boolean
   
    }
    interface SessionResponse{
