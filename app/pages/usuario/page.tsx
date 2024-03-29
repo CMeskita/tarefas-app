@@ -12,9 +12,9 @@ import Link from "next/link";
 //validando campos
 const UsuarioSchema=z.object({
     nome:z.string().min(3,'Informe o nome'),
-    email:z.string().min(6,'Hrxadecimal precisa de no minímo 6 caracteres'),
-    senhaHas:z.string().min(3,'Informe o nome'),
-    confirmsenhaHas:z.string().min(3,'Informe o nome'),
+    email:z.string().email(),
+    senhaHas:z.string().min(6,'precisa de no minímo 6 caracteres'),
+    confirmsenhaHas:z.string().min(6,'IConfirme Senha'),
     
 
      })
@@ -36,23 +36,23 @@ const {
     register,
   } = usuarioUpForm
 
-async function CadastrarUsuario(data:UsuarioFormData )
-{   debugger;
-  
-
+  async function CadastrarUsuario(data:UsuarioFormData )
+  {   //debugger;
   try {
     console.log(data)
+    if (data.senhaHas===data.confirmsenhaHas) {
+
     await postUsuario({
     
         nome:data.nome,
         email:data.email,
-        senhaHas:data.senhaHas,
-        confirmsenhaHas:data.confirmsenhaHas,
-        admin:true
-                      
+        senhaHas:data.senhaHas,                      
     })
     reset()
     alert("Cadastrado com sucesso!!")
+  }else{
+    alert("Senhas não Conferem!!")
+  }
   } 
   catch (error) {
     if (error instanceof HttpError) {
@@ -66,93 +66,78 @@ async function CadastrarUsuario(data:UsuarioFormData )
     }
   }
 }
-
-    return (
-    <>
-    
-     <Contents>
-
-<div className='flex items-center justify-center p-2 sm:ml-6 w-screen h-screen opacity-70'>
-    
-    
-<div className='shadow shadow-blue-900 flex items-center justify-center  mb-2 rounded bg-blue-50 dark:bg-gray-800'>
-
-    
-         
-<form onSubmit={handleSubmit(CadastrarUsuario)}  className="w-full max-w-lg p-5">
-
-<div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>
-       
-       <span className="text-center text-blue-900 text-2xl ">
-                       Cadastrar Usuário 
-                       </span>
-     </div>
-        <div className="flex flex-wrap -mx-3 mb-6 py-2">
-            <div className="w-full px-3">
-         
-                <Input.Field
-                id="nome"
-                type={InputType.text}
-                placeholder="Nome"
-                {...register('nome')}
-                />
-                   {errors.nome && <span>{errors.nome.message}</span>}
-
+  return (
+    <div className='flex items-center justify-center p-2 sm:ml-6 w-screen h-screen opacity-70'>        
+      <div className='shadow shadow-blue-900 flex items-center justify-center  mb-2 rounded bg-blue-50 dark:bg-gray-800'>
+        
+        <form onSubmit={handleSubmit(CadastrarUsuario)}  className="w-full max-w-lg p-5">
+            <div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>       
+              <span className="text-center text-blue-900 text-2xl ">
+                  Cadastrar Usuário 
+              </span>
             </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-             
-                <Input.Field
-                id="email"
-                type={InputType.text}
-                placeholder="Email"
-                {...register('email')}
-                />
-                 {errors.email && <span>{errors.email.message}</span>}
-            
+            <div className="flex flex-wrap -mx-3 mb-6 py-2">
+                <div className="w-full px-3">         
+                    <Input.Field
+                    id="nome"
+                    type={InputType.text}
+                    placeholder="Nome"
+                    {...register('nome')}
+                    />
+                      {errors.nome && <span>{errors.nome.message}</span>}
+
+                </div>
             </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-             
-                <Input.Field
-                id="senhaHas"
-                type={InputType.password}
-                placeholder="Senha"
-                {...register('senhaHas')}
-                />
-                 {errors.senhaHas && <span>{errors.senhaHas.message}</span>}
-            
+            <div className="flex flex-wrap -mx-3 mb-4">
+                <div className="w-full px-3">             
+                    <Input.Field
+                    id="email"
+                    type={InputType.text}
+                    placeholder="Email"
+                    {...register('email')}
+                    />
+                    {errors.email && <span>{errors.email.message}</span>}
+                
+                </div>
             </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-               
-                <Input.Field
-                id="confirmsenhaHas"
-                type={InputType.password}
-                placeholder="Confirmar Senha"
-                {...register('confirmsenhaHas')}
-                />
-                 {errors.confirmsenhaHas && <span>{errors.confirmsenhaHas.message}</span>}
-            
+            <div className="flex flex-wrap -mx-3 mb-4">
+                <div className="w-full px-3">             
+                    <Input.Field
+                    id="senhaHas"
+                    type={InputType.password}
+                    placeholder="Senha"
+                    {...register('senhaHas')}
+                    />
+                    {errors.senhaHas && <span>{errors.senhaHas.message}</span>}
+                
+                </div>
             </div>
-        </div>
-        <div className="flex items-center justify-start">         
-            <Button>Enviar</Button>        
-        </div>      
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-300 py-4">
-                                    Deseja Fazer Login?
-                 <Link className="text-blue-900 hover:underline dark:text-blue-900" 
-                  href={'/pages/login'}
-                 >
-                Logar</Link>
-                        </div>
-</form>
-    </div>
+            <div className="flex flex-wrap -mx-3 mb-4">
+                <div className="w-full px-3">               
+                    <Input.Field
+                    id="confirmsenhaHas"
+                    type={InputType.password}
+                    placeholder="Confirmar Senha"
+                    {...register('confirmsenhaHas')}
+                    />
+                    {errors.confirmsenhaHas && <span>{errors.confirmsenhaHas.message}</span>}
+                
+                </div>
+            </div>
+            <div className="flex items-center justify-start">         
+                <Button>Enviar</Button>        
+            </div>      
+            <div className="text-sm font-medium text-gray-500 dark:text-gray-300 py-4">
+                  Deseja Fazer Login?
+                <Link className="text-blue-900 hover:underline dark:text-blue-900" 
+                      href={'/pages/login'}
+                      >Logar
+                </Link>
+            </div>
+        </form>
+
+      </div>
     </div> 
-    </Contents>
-    </>
-    )
+    
+  )
 }

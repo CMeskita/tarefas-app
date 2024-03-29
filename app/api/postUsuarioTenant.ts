@@ -1,5 +1,4 @@
 import {
-    BadRequestError,
     HttpError,
     InternalServerError,
     TooManyRequestsError,
@@ -10,9 +9,8 @@ import {
       nome:string
       email :string
       senhaHas :string
-      confirmsenhaHas:string
       tenant:string
-  
+      admin:boolean  
    }
    interface SessionResponse{
        statusCode: number
@@ -20,14 +18,10 @@ import {
    }
   
    export async function postUsuarioTenant(data: IinsertUsuarioProps) {
-  try {
-    
-  } catch (error) {
-    
-  }
+
       debugger;
      // const url = new URL(`http://localhost:3000/usuarios`)
-      const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios`;
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios/shared`;
       const headers = new Headers({
         'Content-type': 'application/json',
       })

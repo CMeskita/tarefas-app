@@ -14,14 +14,15 @@ import { postUsuarioTenant } from "@/app/api/postUsuarioTenant";
 import mypassword from "../../../public/notebookblue.svg"
 import Image, { StaticImageData } from 'next/image'
 import { destroyCookie, setCookie } from "nookies";
+import { useState } from "react";
 
 //validando campos
 const UsuarioSchema=z.object({
     nome:z.string().min(3,'Informe o nome'),
-    email:z.string().min(6,'Hrxadecimal precisa de no minímo 6 caracteres'),
-    senhaHas:z.string().min(3,'Informe o nome'),
-    confirmsenhaHas:z.string().min(3,'Informe o nome'),
-    tenant:z.string()
+    email:z.string().email(),
+    senhaHas:z.string().min(6,'precisa de no minímo 6 caracteres'),
+    confirmsenhaHas:z.string().min(6,'Confirme Senha'),
+    admin:z.boolean()
 
      })
      //tipando o objeto de validação
@@ -41,24 +42,32 @@ const {
     reset,
     register,
   } = colorUpForm
-
+  const [check, setCheck] = useState(false);
+  const handleChecked = () => {
+    setCheck(!check);
+  }
+  
 async function CadastrarUsuario(data:UsuarioFormData )
 {   debugger;
   
 
   try {
-    console.log(data)
+    //console.log(data)
+    if (data.senhaHas===data.confirmsenhaHas) {
     await postUsuarioTenant({
     
         nome:data.nome,
         email:data.email,
         senhaHas:data.senhaHas,
-        confirmsenhaHas:data.confirmsenhaHas,
-        tenant:data.tenant
+        tenant:obj.tenant,
+        admin:data.admin
                       
     })
     reset()
     alert("Cadastrado com sucesso!!")
+  }else{
+    alert("Senhas não Conferem!!")
+  }
   } 
   catch (error) {
     if (error instanceof HttpError) {
@@ -72,19 +81,17 @@ async function CadastrarUsuario(data:UsuarioFormData )
     }
   }
 }
-function handleClick() {
-     
+function handleClick() {     
   // Destroy
   setCookie(null, 'token','')
   setCookie(null, '_id','')
-
 }
 
     return (
     <>
     
-     <Contents>
-     <Nav usuarioLogado={obj.nome} />
+  
+<Nav usuarioLogado={obj.nome} />
 <div className='flex items-center justify-center p-4 sm:ml-6 w-screen h-screen'>
 <div className="grid sm:grid-cols-2 xs:grid-cols-1">
          <span>
@@ -92,104 +99,86 @@ function handleClick() {
    <p className="text-2xl text-blue-900  font-bold ">Compatilhe as Tarefas!!</p>
    </span>
          
-<form onSubmit={handleSubmit(CadastrarUsuario)}  className="w-full max-w-lg p-5">
+      <form onSubmit={handleSubmit(CadastrarUsuario)}  className="w-full max-w-lg p-5">
 
-<div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>
-       
-       <span className="text-center text-blue-900 text-2xl font-bold ">
-                       Cadastro Usuário
-                       </span>
-     </div>
+        <div className='flex flex-wrap -mx-3 mb-6 py-2 justify-center border-b-4 border-blue-900 '>       
+          <span className="text-center text-blue-900 text-2xl font-bold ">
+            Cadastro Usuário
+          </span>
+        </div>
         <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-           
+            <div className="w-full px-3">           
                 <Input.Field
                 id="nome"
                 type={InputType.text}
                 placeholder="Nome"
                 {...register('nome')}
                 />
-                   {errors.nome && <span>{errors.nome.message}</span>}
-
+                {errors.nome && <span>{errors.nome.message}</span>}
             </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-             
+            <div className="w-full px-3">             
                 <Input.Field
                 id="email"
                 type={InputType.text}
                 placeholder="Email"
                 {...register('email')}
                 />
-                 {errors.email && <span>{errors.email.message}</span>}
-            
+                {errors.email && <span>{errors.email.message}</span>}            
             </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-            
+            <div className="w-full px-3">            
                 <Input.Field
                 id="senhaHas"
                 type={InputType.password}
                 placeholder="Senha"
                 {...register('senhaHas')}
                 />
-                 {errors.senhaHas && <span>{errors.senhaHas.message}</span>}
-            
+                {errors.senhaHas && <span>{errors.senhaHas.message}</span>}            
             </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full px-3">
-              
+            <div className="w-full px-3">              
                 <Input.Field
                 id="confirmsenhaHas"
                 type={InputType.password}
                 placeholder="Confirma Senha"
                 {...register('confirmsenhaHas')}
                 />
-                 {errors.confirmsenhaHas && <span>{errors.confirmsenhaHas.message}</span>}
-            
+                {errors.confirmsenhaHas && <span>{errors.confirmsenhaHas.message}</span>}            
             </div>
-        </div>
-        <div className='flex-wrap -mx-3 hidden'>
-                  <div className='w-full'>              
-                 
-                      <Input.Field                    
-                      id='tenant'
-                      placeholder="tenant"
-                      value={obj.tenant}
-                      type={InputType.number}                     
-                      />
-                  
-                  </div>
-              </div>     
+        </div>    
         <div className="flex items-center justify-start">         
             <Button>Enviar</Button>        
-            <div className="flex items-center ps-3">
-                     <Input.Field
-                        key={''}
-                     className="w-4 h-4 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-700 dark:focus:ring-offset-blue-700 focus:ring-2 "
-                        id="ter"
-                        type={InputType.checkbox}
-                       checked={false}
-                        />
-                                                                           
-                     <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrador</label>
-                    </div>   
+          <div className="flex items-center ps-3">
+                      <Input.Field
+                          key={'admin'}
+                          className="w-4 h-4 "
+                          id="ter"
+                          type={InputType.checkbox}
+                          {...register('admin')}
+                          onChange={handleChecked}
+                          checked={check}                       
+                          />
+                          {errors.admin && <span>{errors.admin.message}</span>}   
+                                                                            
+                      <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrador</label>
+          </div>   
         </div>      
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 py-4">
-                                    Cadastro compartilhado !
-                 <Link className="text-blue-900 hover:underline dark:text-blue-500" 
+                  Cadastro compartilhado !
+            <Link className="text-blue-900 hover:underline dark:text-blue-500" 
                   onClick={handleClick}
                   href={'/pages/login'}
-                 >
-                Logar?</Link>
-                        </div>
-</form>
+                  >Logar?
+            </Link>
+        </div>
+  </form>
     </div>
     </div> 
-    </Contents>
+  
     </>
     )
 }

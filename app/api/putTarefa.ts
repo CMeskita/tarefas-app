@@ -16,6 +16,8 @@ import {
       sex:Boolean
       sab:Boolean
       dom:Boolean
+      active:Boolean
+      shared:Boolean
     
   
    }

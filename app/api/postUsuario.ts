@@ -1,5 +1,4 @@
 import {
-    BadRequestError,
     HttpError,
     InternalServerError,
     TooManyRequestsError,
@@ -10,8 +9,6 @@ import {
       nome:string
       email :string
       senhaHas :string
-      confirmsenhaHas:string
-      admin:boolean
   
    }
    interface SessionResponse{
@@ -27,7 +24,7 @@ import {
   }
       debugger;
       //const url = new URL(`http://localhost:3000/usuarios/compartilhado`)
-      const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios/compartilhado`;
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/usuarios`;
       const headers = new Headers({
         'Content-type': 'application/json',
       })

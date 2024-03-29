@@ -1,9 +1,6 @@
 
 import {
-    
-  InternalServerError,
   NotFoundError,
-  TooManyRequestsError,
   } from '../http'
 
   
@@ -18,6 +15,8 @@ import {
       sab :boolean
       dom :boolean
       tenant:string
+      active :boolean
+      shared :boolean
       
   }
  
@@ -48,9 +47,9 @@ debugger;
         sex: data.sex,
         sab: data.sab,
         dom: data.dom,
-        tenant:data.tenant
-         // ativo: tarefa.dom,
-        //shaed:tarefa.tenant
+        tenant:data.tenant,
+        active: data.active,
+        shared:data.shared
       }
    
       return tarefas

@@ -7,7 +7,7 @@ import {
     
   } from '@heroicons/react/24/outline'
 import {MdDashboard,MdHome,MdSupervisorAccount,MdExitToApp} from 'react-icons/md'
-import { setCookie } from "nookies";
+import { setCookie,destroyCookie} from "nookies";
 interface INavProps {
    
     usuarioLogado:string
@@ -17,12 +17,13 @@ interface INavProps {
      
       // Destroy
       setCookie(null,'token','')
-      setCookie(null,'_id','')
+      destroyCookie(null,'token')
+      destroyCookie(null,'_id')
   }
   function handleClickId() {
      
     // Destroy
-    setCookie(null,'_id','')
+    destroyCookie(null,'_id')
 }
     //<div className="h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
 export function Nav({usuarioLogado}:INavProps){

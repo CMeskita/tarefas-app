@@ -24,10 +24,10 @@ import {
       
   }[]
   
-   export async function getTarefas(tenant: string) {
+   export async function getTarefasShared(tenant: string) {
 
      // const url = new URL(`http://localhost:3000/tarefas/tenant?tenant=${tenant}`)
-      const url = `${process.env.NEXT_PUBLIC_API_KEY}/tarefas/tenant?tenant=${tenant}`;
+      const url = `${process.env.NEXT_PUBLIC_API_KEY}/tarefas/shared?tenant=${tenant}`;
     // debugger;
 console.log(url)
     

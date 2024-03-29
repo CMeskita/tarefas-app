@@ -17,6 +17,7 @@ import {
       sab:Boolean
       dom:Boolean
       tenant:String
+ 
   
    }
    interface SessionResponse{
